@@ -14,13 +14,15 @@ public class Shooting : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            Shoot(bulletPrefab);
         }
     }
-    void Shoot()
+    public void Shoot(GameObject bulletPrefab1)
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
     }
+
+
 }
