@@ -6,15 +6,18 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float health;
-    [SerializeField] float maxHealth = 3f;
+    [SerializeField] int health;
+    [SerializeField] int maxHealth = 3;
+
+    public int damage;
+    public PlayerHealth playerHealth;
 
     void Start()
     {
         health = maxHealth;
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
 
@@ -26,9 +29,9 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth playerComponent))
-        {
-            playerComponent.TakeDamage(10);
-        }
+            if (collision.gameObject.tag == "Player")
+            {
+                playerHealth.TakeDamage(damage);
+            }
     }
 }
