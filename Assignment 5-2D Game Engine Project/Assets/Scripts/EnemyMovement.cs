@@ -12,7 +12,8 @@ public class EnemyMovement : MonoBehaviour
 
     private new Rigidbody2D rigidbody;
     private PlayerAwarenessController playerAwarenessController;
-    private Vector2 targetDirection; 
+    private Vector2 targetDirection;
+    public Animator anim;
 
     private void Awake()
     {
@@ -30,10 +31,12 @@ public class EnemyMovement : MonoBehaviour
         if (playerAwarenessController.AwareOfPlayer) 
         {
             targetDirection = playerAwarenessController.DirectionToPlayer;
+            anim.SetBool("IsMoving", true);
         }
         else
         {
             targetDirection = Vector2.zero;
+            anim.SetBool("IsMoving", false);
         }
     }
     private void RotateTowardsTarget()

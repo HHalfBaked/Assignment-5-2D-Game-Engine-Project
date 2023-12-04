@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,23 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
     Vector2 mousePos;
 
+    public Animator anim;
+
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        if(movement.x == 0 && movement.y == 0)
+        {
+            anim.SetBool("IsMoving", false);
+        }
+        else
+        {
+            anim.SetBool("IsMoving", true);
+        }
     }
 
     private void FixedUpdate()

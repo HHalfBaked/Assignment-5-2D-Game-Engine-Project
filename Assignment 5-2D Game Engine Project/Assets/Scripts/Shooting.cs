@@ -6,7 +6,7 @@ public class Shooting : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-
+    public Animator anim;
 
     public float bulletForce = 20f;
 
@@ -15,6 +15,11 @@ public class Shooting : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             Shoot(bulletPrefab);
+            anim.SetBool("IsShoot", true);
+        }
+        else
+        {
+            anim.SetBool("IsShoot", false);
         }
     }
     public void Shoot(GameObject bulletPrefab1)

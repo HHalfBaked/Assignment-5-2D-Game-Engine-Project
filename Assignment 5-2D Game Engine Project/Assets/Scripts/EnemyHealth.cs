@@ -11,10 +11,16 @@ public class EnemyHealth : MonoBehaviour
 
     public int damage;
     public PlayerHealth playerHealth;
+    public Animator anim;
 
     void Start()
     {
         health = maxHealth;
+    }
+
+    private void Update()
+    {
+       
     }
 
     public void TakeDamage(int damageAmount)
@@ -29,9 +35,18 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-            if (collision.gameObject.tag == "Player")
-            {
-                playerHealth.TakeDamage(damage);
-            }
+        if (collision.gameObject.tag == "Player")
+        {
+            playerHealth.TakeDamage(damage);
+            anim.SetBool("IsAttack", true);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            anim.SetBool("IsAttack", false);
+        }
     }
 }
