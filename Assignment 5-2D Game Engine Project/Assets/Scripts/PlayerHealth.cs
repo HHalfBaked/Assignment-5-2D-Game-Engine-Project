@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int health;
-    [SerializeField] int maxHealth = 100;
+    public int health;
+    public int maxHealth = 100;
     public HealthBar healthBar;
 
     void Start()
@@ -23,6 +23,14 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+    public void GainHealth(int healAmount)
+    {
+        if (maxHealth > health)
+        {
+            health += healAmount;
+            healthBar.SetHealth(health);
         }
     }
 }
