@@ -18,11 +18,6 @@ public class EnemyHealth : MonoBehaviour
         health = maxHealth;
     }
 
-    private void Update()
-    {
-       
-    }
-
     public void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
