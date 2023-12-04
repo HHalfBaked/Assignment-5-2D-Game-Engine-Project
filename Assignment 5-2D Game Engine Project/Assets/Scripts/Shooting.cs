@@ -13,28 +13,37 @@ public class Shooting : MonoBehaviour
     public int maxClipSize = 10;
     public int currentAmmo;
     public int maxAmmoSize = 100;
+    public float reloadDelay = 0.7f;
+    public float shootDelay = 0.4f;
 
+    private bool canShoot = true;
+    private bool isReloading = false;
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && currentClip > 0)
+        if(Input.GetButtonDown("Fire1") && currentClip > 0 && canShoot == true && isReloading == false)
         {
-            Shoot(bulletPrefab);
+            canShoot = false;
+            ShootHandGun(bulletPrefab);
             anim.SetBool("IsShoot", true);
             currentClip -= 1;
+            StartCoroutine(ResetShootAfterDelay(shootDelay));
         }
         else 
         {
             anim.SetBool("IsShoot", false);
         }
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R) && currentClip != maxClipSize)
         {
+            isReloading = true;
+            canShoot = false;
             Reload();
             anim.SetBool("IsReload", true);
-            StartCoroutine(ResetBoolAfterDelay(0.2f));
+            StartCoroutine(ResetBoolAfterDelay(reloadDelay));
         }
     }
-    public void Shoot(GameObject bulletPrefab1)
+
+    public void ShootHandGun(GameObject bulletPrefab1)
     {
         if (currentClip > 0)
         {
@@ -65,5 +74,12 @@ public class Shooting : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         anim.SetBool("IsReload", false);
+        canShoot = true;
+        isReloading = false;
+    }
+    IEnumerator ResetShootAfterDelay(float shootDelay)
+    {
+        yield return new WaitForSeconds(shootDelay);
+        canShoot = true;
     }
 }
