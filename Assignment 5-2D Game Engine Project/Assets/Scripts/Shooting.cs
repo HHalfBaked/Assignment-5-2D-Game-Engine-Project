@@ -7,6 +7,7 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public Animator anim;
+    public PlayerHealth health;
 
     public float bulletForce = 20f;
     public int currentClip;
@@ -21,25 +22,28 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && currentClip > 0 && canShoot == true && isReloading == false)
+        if (health.isDead == false)
         {
-            canShoot = false;
-            ShootHandGun(bulletPrefab);
-            anim.SetBool("IsShoot", true);
-            currentClip -= 1;
-            StartCoroutine(ResetShootAfterDelay(shootDelay));
-        }
-        else 
-        {
-            anim.SetBool("IsShoot", false);
-        }
-        if(Input.GetKeyDown(KeyCode.R) && currentClip != maxClipSize)
-        {
-            isReloading = true;
-            canShoot = false;
-            Reload();
-            anim.SetBool("IsReload", true);
-            StartCoroutine(ResetBoolAfterDelay(reloadDelay));
+            if (Input.GetButtonDown("Fire1") && currentClip > 0 && canShoot == true && isReloading == false)
+            {
+                canShoot = false;
+                ShootHandGun(bulletPrefab);
+                anim.SetBool("IsShoot", true);
+                currentClip -= 1;
+                StartCoroutine(ResetShootAfterDelay(shootDelay));
+            }
+            else
+            {
+                anim.SetBool("IsShoot", false);
+            }
+            if (Input.GetKeyDown(KeyCode.R) && currentClip != maxClipSize)
+            {
+                isReloading = true;
+                canShoot = false;
+                Reload();
+                anim.SetBool("IsReload", true);
+                StartCoroutine(ResetBoolAfterDelay(reloadDelay));
+            }
         }
     }
 
