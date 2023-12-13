@@ -9,7 +9,7 @@ public class HandGunAmmoPickup : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            shoot.AddAmmo(10);
+            shoot.AddAmmo(5);
             Destroy(gameObject);
         }
     }
