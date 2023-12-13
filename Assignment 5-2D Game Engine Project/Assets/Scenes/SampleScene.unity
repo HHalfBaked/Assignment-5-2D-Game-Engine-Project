@@ -5038,6 +5038,7 @@ MonoBehaviour:
   rb: {fileID: 1660524606}
   cam: {fileID: 519420031}
   anim: {fileID: 1660524610}
+  health: {fileID: 1660524609}
 --- !u!50 &1660524606
 Rigidbody2D:
   serializedVersion: 4
@@ -5080,6 +5081,7 @@ MonoBehaviour:
   firePoint: {fileID: 1643343518}
   bulletPrefab: {fileID: 85648893646671645, guid: aa06b04f5699b734c920bfec95dcc8da, type: 3}
   anim: {fileID: 1660524610}
+  health: {fileID: 1660524609}
   bulletForce: 30
   currentClip: 10
   maxClipSize: 10
@@ -5147,6 +5149,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   healthBar: {fileID: 15774266}
+  anim: {fileID: 1660524610}
+  deathDelay: 3
+  isDead: 0
 --- !u!95 &1660524610
 Animator:
   serializedVersion: 5
@@ -5563,8 +5568,8 @@ Transform:
   m_GameObject: {fileID: 1791909014}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.01117693, w: 0.99993753}
-  m_LocalPosition: {x: 0.21714875, y: -0.011791064, z: 0}
-  m_LocalScale: {x: 0.9195402, y: 0.49984387, z: 1}
+  m_LocalPosition: {x: 0.55102, y: 0.01286, z: 0}
+  m_LocalScale: {x: 1.163225, y: 1.2989154, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 128315159}
@@ -6063,8 +6068,8 @@ Transform:
   m_GameObject: {fileID: 2043666555}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.3886, y: 1.3285, z: -7.470527}
-  m_LocalScale: {x: 514.594, y: 508.27563, z: 1}
+  m_LocalPosition: {x: 11.389, y: 1.3285, z: -7.470527}
+  m_LocalScale: {x: 829.7828, y: 864.0686, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
