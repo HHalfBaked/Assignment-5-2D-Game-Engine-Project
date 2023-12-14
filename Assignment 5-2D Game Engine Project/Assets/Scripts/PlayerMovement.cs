@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Variables
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     public Camera cam;
@@ -16,30 +17,31 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        //Only move when not dead
         if (health.isDead == false)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = cam.ScreenToWorldPoint(Input.mousePosition); //Set Vector2 to mouse position
 
-            if (movement.x == 0 && movement.y == 0)
+            if (movement.x == 0 && movement.y == 0) //When not moving
             {
-                anim.SetBool("IsMoving", false);
+                anim.SetBool("IsMoving", false); //Changes animation
             }
             else
             {
-                anim.SetBool("IsMoving", true);
+                anim.SetBool("IsMoving", true); //Changes animation
             }
         }
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); //Move position
         
-        Vector2 lookDirection = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
+        Vector2 lookDirection = mousePos - rb.position; //Vector2 set to distance between player and mouse
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg; //Float set to X and Y axis
+        rb.rotation = angle; //Rotate towards angle of mouse
     }
 }

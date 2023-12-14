@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    //Variables
     [SerializeField] int health;
     [SerializeField] int maxHealth = 3;
 
@@ -17,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
     {
         health = maxHealth;
     }
-
+    //Function to reduce health
     public void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
@@ -32,16 +33,15 @@ public class EnemyHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerHealth.TakeDamage(damage);
-            anim.SetBool("IsAttack", true);
+            playerHealth.TakeDamage(damage); //Damage player health
+            anim.SetBool("IsAttack", true); //Change animation
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-
-            anim.SetBool("IsAttack", false);
+            anim.SetBool("IsAttack", false); //Change animation 
         }
     }
 }

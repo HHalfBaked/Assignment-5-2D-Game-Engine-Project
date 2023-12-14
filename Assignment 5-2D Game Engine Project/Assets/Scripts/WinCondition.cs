@@ -8,6 +8,7 @@ public class WinCondition : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            //Closes games
             Debug.Log("Quit");
             Application.Quit();
         }
